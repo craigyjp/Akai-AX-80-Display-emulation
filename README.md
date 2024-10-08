@@ -8,4 +8,8 @@ Unfortunately I didn't have the nice AX-80 displays of the 1980's, so I decided 
 
 In my use case I was not restricted by the dimensions of the original AX-80 keyboard as this was to be built into a 19" rack unit. Therefore I used 2" SPI IPS displays with 65,000 colours. These are probably too tall and not wide enough to fit the original AX-80 keyboard, but I have found some 3.12" displays that would possibly fill the AX-80 display windows but they are mono and not colour, so it is a bit of a trade off.
 
+In theory you can use any SPI OLED display that is supported by Arduino and simply change the screen width and height in the code to draw the relevant bars.
+
+The schematics show the decoder logic and level conversion from 5V to 3.3v of the original signals, this generates 32 interrupt lines which can be read by 5 ESP32 boards, the 13 address lines carry the segments to be displayed, I simply caputure these with a pair of shift registers every time an interrupt is received and display it on the screen, Each ESP-32 is designed to display upto 8 columns like the original AX-80 VFD displays, but between 5 and 8 are used on each display depending on which section of the synth is it being used for. I used ESP-32 boards because they are cheap and easily accessible, I have never used them before, but they have Arduino compatibility which I required for the RoxMux library used to capture the 13 address lines. 
+
 
